@@ -1,4 +1,4 @@
-id	project	name	bps	sequences	biome	feature	material	sequencing&nbsp;type	sequencing&nbsp;method	avg&nbsp;seq&nbsp;length
+id	project	name	bps	sequences	biome	feature	material	sequencing_type	sequencing_method	avg_seq_length
 4447970.3	The oral metagenome in health and disease	CA_05_4.6	27669924	70503	human-associated habitat	human-associated habitat	human-associated habitat	WGS	454	392.464
 4447971.3	The oral metagenome in health and disease	CA_06_1.6	37519874	97722	human-associated habitat	human-associated habitat	human-associated habitat	WGS	454	383.945
 4440275.3	cDNA - Plymouth Marine Lab Coastal Waters project	1-19-DNA-flx	59316369	344216	marine habitat	marine habitat	marine habitat	WGS	454	172.323
@@ -8489,7 +8489,7 @@ id	project	name	bps	sequences	biome	feature	material	sequencing&nbsp;type	sequen
 4473942.3	FMPtwins	F4T2post4	12679176	48809	human-associated habitat	human-associated habitat	human-associated habitat	Amplicon	unknown	259.771
 4473943.3	FMPtwins	F4T2pre1	6631408	25396	human-associated habitat	human-associated habitat	human-associated habitat	Amplicon	unknown	261.120
 4473944.3	FMPtwins	F4T2pre4	13224398	50679	human-associated habitat	human-associated habitat	human-associated habitat	Amplicon	unknown	260.944
-4473945.3	FMPtwins		F3T1FMP4	14901505	57408	human-associated habitat	human-associated habitat	human-associated habitat	Amplicon	unknown	259.572
+4473945.3	FMPtwins	F3T1FMP4	14901505	57408	human-associated habitat	human-associated habitat	human-associated habitat	Amplicon	unknown	259.572
 4473946.3	FMPtwins	F3T1FMP7	14700033	57811	human-associated habitat	human-associated habitat	human-associated habitat	Amplicon	unknown	254.277
 4473947.3	FMPtwins	F3T1post2	6761250	26388	human-associated habitat	human-associated habitat	human-associated habitat	Amplicon	unknown	256.224
 4473948.3	FMPtwins	F3T1post4	13375630	53287	human-associated habitat	human-associated habitat	human-associated habitat	Amplicon	unknown	251.011
@@ -8507,7 +8507,7 @@ id	project	name	bps	sequences	biome	feature	material	sequencing&nbsp;type	sequen
 4473960.3	FMPtwins	F5T1pre1	14896029	57038	human-associated habitat	human-associated habitat	human-associated habitat	Amplicon	unknown	261.160
 4473961.3	FMPtwins	F5T1pre4	13048173	50262	human-associated habitat	human-associated habitat	human-associated habitat	Amplicon	unknown	259.603
 4473962.3	FMPtwins	F5T2FMP4	15923648	61573	human-associated habitat	human-associated habitat	human-associated habitat	Amplicon	unknown	258.614
-4473963.3	FMPtwins		F5T2FMP7	33563534	129330	human-associated habitat	human-associated habitat	human-associated habitat	Amplicon	unknown	259.519
+4473963.3	FMPtwins	F5T2FMP7	33563534	129330	human-associated habitat	human-associated habitat	human-associated habitat	Amplicon	unknown	259.519
 4473964.3	FMPtwins	F5T2post2	18455200	71274	human-associated habitat	human-associated habitat	human-associated habitat	Amplicon	unknown	258.933
 4473965.3	FMPtwins	F5T2post4	47634003	184097	human-associated habitat	human-associated habitat	human-associated habitat	Amplicon	unknown	258.744
 4473966.3	FMPtwins	F5T2pre1	11172642	44073	human-associated habitat	human-associated habitat	human-associated habitat	Amplicon	unknown	253.503
@@ -8515,7 +8515,7 @@ id	project	name	bps	sequences	biome	feature	material	sequencing&nbsp;type	sequen
 4473968.3	FMPtwins	F3T2pre4	12890018	50473	human-associated habitat	human-associated habitat	human-associated habitat	Amplicon	unknown	255.384
 4473969.3	FMPtwins	F1T2FMP4	10457313	40093	human-associated habitat	human-associated habitat	human-associated habitat	Amplicon	unknown	260.826
 4473970.3	FMPtwins	F1T2FMP7	12332010	47471	human-associated habitat	human-associated habitat	human-associated habitat	Amplicon	unknown	259.780
-4473971.3	FMPtwins		F1T2post2	9807321	38725	human-associated habitat	human-associated habitat	human-associated habitat	Amplicon	unknown	253.256
+4473971.3	FMPtwins	F1T2post2	9807321	38725	human-associated habitat	human-associated habitat	human-associated habitat	Amplicon	unknown	253.256
 4473972.3	FMPtwins	F1T2post4	13355845	50959	animal-associated habitat	animal-associated habitat	animal-associated habitat	Amplicon	unknown	262.090
 4473973.3	FMPtwins	F1T2pre1	13718628	52254	human-associated habitat	human-associated habitat	human-associated habitat	Amplicon	unknown	262.537
 4473974.3	FMPtwins	F1T2pre4	14356779	55886	human-associated habitat	human-associated habitat	human-associated habitat	Amplicon	unknown	256.894
