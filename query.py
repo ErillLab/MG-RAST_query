@@ -7,14 +7,14 @@ Created on Fri Dec 27 18:07:46 2013
 This script will query the MG-RAST database and obtain metagenomes that should
 be assembled.
 
-TODO:
-- Query the database using the API to confirm metagenomes are assemblies.
-
 """
 
 import csv
 import numpy as np
 import requests
+import json
+from os import mkdir, path, listdir
+from time import time
 from prettytable import PrettyTable
 
 ######################
@@ -25,7 +25,9 @@ data_table = "web_table.tsv"
 
 min_avg_seq_length = 1000
 max_avg_seq_length = 20000
-min_bps = 1e6
+min_bps = 1e8
+
+api_url = "http://api.metagenomics.anl.gov/"
 
 ######################
 print "Parameters:"
@@ -101,6 +103,79 @@ for method in methods:
     methods_table.add_row([method, assemblies_methods.count(method), all_mgs_methods.count(method)])
 methods_table.add_row(["Total", len(assemblies), len(all_mgs)])
 print methods_table
+print
+
+# Download full metadata for putative assemblies
+print "Requesting full metadata for each assembly:"
+
+# Make sure output folder exists
+if not path.exists("metagenomes"):
+    mkdir("metagenomes")
+
+# Get full data for each assembly
+for mg in assemblies:
+    # Skip if the data was already downloaded
+    if path.exists("metagenomes/" + mg["id"] + "/metadata.json"):
+        continue
+    
+    b = time()
+    # Create folder for metagenome if it doesn't exist
+    if not path.exists("metagenomes/" + mg["id"]):
+        mkdir("metagenomes/" + mg["id"])
+    
+    # Get the data
+    r = requests.get(api_url + "metagenome/" + mg["id"] + "?verbosity=full")
+    
+    # Save to disk
+    open("metagenomes/" + mg["id"] + "/metadata.json", "w").write(r.content)
+    print "Fetched %s. [%.2fs]" % (mg["id"], time() - b)
+print "Done."
+print
+
+# Generate summary of metagenomes
+html_str = "== Putative Assemblies ==\n"
+for folder in listdir("metagenomes"):
+    if path.exists("metagenomes/" + folder + "/metadata.json"):
+        metadata = json.load(open("metagenomes/" + folder + "/metadata.json"))
+        
+        html_str += "=== %s ===\n" % metadata["name"]
+        
+        table = PrettyTable()
+        table.add_row(["Name", metadata["name"]])
+        table.add_row(["ID", metadata["id"]])
+        table.add_row(["Project", metadata["project"][0]])
+        table.add_row(["Sequence Type", metadata["sequence_type"]])
+        html_str += table.get_html_string(header=False) + "\n\n"
+        
+        html_str += "==== MIXS ====\n"
+        table = PrettyTable()
+        for key, value in metadata["mixs"].items():
+            table.add_row([key, value])
+        html_str += table.get_html_string(header=False) + "\n\n"
+        
+        # Taxonomy
+        html_str += "==== Taxonomy ====\n"
+        for level in ["phylum", "class", "order"]:
+            table = PrettyTable()
+            html_str += "===== %s =====\n" % (level.capitalize())
+            top_10 = sorted(metadata["statistics"]["taxonomy"][level], key=lambda x: int(x[1]), reverse=True)[:10]
+            for item in top_10:
+                table.add_row([item[0], item[1]])
+            html_str += table.get_html_string(header=False) + "\n\n"
+        
+        # Sequence stats
+        html_str += "==== Sequence Statistics ====\n"
+        table = PrettyTable()
+        stat_fields = ["bp_count_raw", "sequence_count_raw",
+                       "average_length_raw", "standard_deviation_length_raw",
+                       "average_gc_content_raw", "standard_deviation_gc_content_raw"]
+        for field in stat_fields:
+            table.add_row([field, metadata["statistics"]["sequence_stats"][field]])
+        html_str += table.get_html_string(header=False) + "\n\n\n"
+html_str = html_str.replace("<table>", "<table class=\"wikitable\">")
+
+# Write to file
+open("report.html", "w").write(html_str)
 
 # To download each MG:
 # http://api.metagenomics.anl.gov/download/mgm4544224.3?file=050.2
@@ -110,3 +185,4 @@ print methods_table
 # CaseInsensitiveDict({'content-length': '5509921', 'content-disposition': 'attachment;filename=111857.fna.gz', 'expires': 'Sat, 28 Dec 2013 01:16:15 GMT', 'keep-alive': 'timeout=90', 'server': 'nginx', 'connection': 'keep-alive', 'cache-control': 'max-age=0', 'date': 'Sat, 28 Dec 2013 01:16:15 GMT', 'access-control-allow-origin': '*', 'content-type': 'application/x-download'})
 # >>> len(mg.content)
 # 5509921
+# 100.1
