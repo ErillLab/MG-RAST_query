@@ -21,7 +21,7 @@ from prettytable import PrettyTable
 ##### Parameters #####
 ######################
 
-data_table = "web_table.tsv"
+data_table = "mg-rast_2015-02-11.txt"
 
 min_avg_seq_length = 1000
 max_avg_seq_length = 20000
